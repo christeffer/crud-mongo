@@ -1,0 +1,13 @@
+<form class="form">
+  <mat-card class="home mat-elevation-z3">
+    <mat-card-title class="title">Cadastro de Cidade</mat-card-title>        
+    <label for="name"><b>Nome</b></label>
+    <input class="input" matInput [(ngModel)]="name" name="name" />
+    <br />
+    <label for="state"><b>Estado</b></label>
+    <app-plan class="field" [(inputModel)]="state" name="state"></app-plan>
+    <br />
+    <button>Salvar</button>    
+
+  </mat-card>
+</form>

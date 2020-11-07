@@ -1,0 +1,10 @@
+<select
+  name="state"
+  id="state"
+  [(ngModel)]="inputModel"
+  (ngModelChange)="inputModelChange.emit(inputModel)"
+>
+  <option *ngFor="let state of states" value="{{ state.id }}">{{
+    state.name
+  }}</option>
+</select>
