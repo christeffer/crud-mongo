@@ -3,8 +3,19 @@ const State = require('../models/State');
 
 module.exports = {
   async index(req, res) {
-    const state = await State.find();
-
+    const filter = Object.assign(
+      {},
+      ...Object.keys(req.body).map((objKey) => {
+        return { [objKey]: req.body[objKey] };
+      })
+    );
+    let orderBy = '';
+    if (req.query['order'] && req.query['sortBy']) {
+      const order = req.query['order'] ? req.query['order'] : '';
+      const sort = req.query['sortBy'] ? req.query['sortBy'] : '';
+      orderBy = { [sort]: order };
+    }
+    const state = await State.find(filter).sort(orderBy);
     return res.json(state);
   },
   async store(req, res) {

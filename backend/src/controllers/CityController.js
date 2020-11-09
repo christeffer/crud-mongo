@@ -3,7 +3,19 @@ const City = require('../models/City');
 
 module.exports = {
   async index(req, res) {
-    const city = await City.find().populate('state');
+    const filter = Object.assign(
+      {},
+      ...Object.keys(req.body).map((objKey) => {
+        return { [objKey]: req.body[objKey] };
+      })
+    );
+    let orderBy = '';
+    if (req.query['order'] && req.query['sortBy']) {
+      const order = req.query['order'] ? req.query['order'] : '';
+      const sort = req.query['sortBy'] ? req.query['sortBy'] : '';
+      orderBy = { [sort]: order };
+    }
+    const city = await City.find(filter).populate('state').sort(orderBy);
 
     return res.json(city);
   },

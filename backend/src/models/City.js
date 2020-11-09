@@ -11,5 +11,6 @@ const CitySchema = new mongoose.Schema({
     required: 'Necessário informar o estado a qual a cidade pertence',
   },
 });
+
 CitySchema.set('timestamps', true);
 module.exports = mongoose.model('City', CitySchema);

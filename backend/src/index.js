@@ -1,3 +1,4 @@
+require('dotenv/config');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -8,7 +9,7 @@ const swaggerConfig = require('../config/swagger');
 const app = express();
 
 mongoose.connect(
-  'mongodb+srv://mongodb:mongodb@node.zzdec.mongodb.net/crud?retryWrites=true&w=majority',
+  `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.MONGO_HOST}/crud?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

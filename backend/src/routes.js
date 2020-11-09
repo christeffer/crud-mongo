@@ -1,8 +1,11 @@
 const { Router } = require('express');
 const StateController = require('./controllers/StateController');
 const CityController = require('./controllers/CityController');
+const isAuthorized = require('./middleware/isAuthorized');
 
 const routes = Router();
+
+routes.use(isAuthorized);
 
 routes.get('/state', StateController.index);
 routes.post('/state', StateController.store);
