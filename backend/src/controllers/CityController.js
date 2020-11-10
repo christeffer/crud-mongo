@@ -3,12 +3,27 @@ const City = require('../models/City');
 
 module.exports = {
   async index(req, res) {
+    const fields = ['cityName', 'stateName', 'abbreviation'];
+    let fieldsLength = fields.length;
     const filter = Object.assign(
       {},
-      ...Object.keys(req.body).map((objKey) => {
-        return { [objKey]: req.body[objKey] };
+      ...Object.keys(req.query).map((objKey) => {
+        let max = fieldsLength;
+        while (max >= 0) {
+          console.log('field ' + fields[max]);
+          console.log('obj ' + objKey);
+          if (objKey.indexOf(fields[max]) !== -1) {
+            return { [objKey]: req.query[objKey] };
+          }
+          max--;
+        }
+        /*
+        if (objKey.indexOf('cityName') !== -1)
+          return { [objKey]: req.query[objKey] };
+        */
       })
     );
+    console.log(filter);
     let orderBy = '';
     if (req.query['order'] && req.query['sortBy']) {
       const order = req.query['order'] ? req.query['order'] : '';
@@ -20,16 +35,16 @@ module.exports = {
     return res.json(city);
   },
   async store(req, res) {
-    const { name, state } = req.body;
+    const { cityName, state } = req.body;
 
-    let city = await City.findOne({ name });
+    let city = await City.findOne({ cityName });
 
     if (city) {
       res.status(400).json({ success: false, message: 'Cidade já cadastrado' });
     }
     try {
       city = await City.create({
-        name,
+        cityName,
         state,
       });
     } catch (error) {
@@ -43,7 +58,7 @@ module.exports = {
     const updatedCity = await City.findOneAndUpdate(
       { _id: req.params.id },
       {
-        name: req.body.name,
+        cityName: req.body.cityName,
         state: req.body.state,
       },
       function (err, city) {
