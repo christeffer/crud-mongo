@@ -3,8 +3,9 @@
   id="state"
   [(ngModel)]="inputModel"
   (ngModelChange)="inputModelChange.emit(inputModel)"
+  required
 >
-  <option *ngFor="let state of states" value="{{ state.id }}">{{
-    state.name
+  <option *ngFor="let state of states" value="{{ state._id }}" >{{
+    state.stateName
   }}</option>
 </select>

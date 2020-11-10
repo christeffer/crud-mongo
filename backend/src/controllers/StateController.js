@@ -5,8 +5,12 @@ module.exports = {
   async index(req, res) {
     const filter = Object.assign(
       {},
-      ...Object.keys(req.body).map((objKey) => {
-        return { [objKey]: req.body[objKey] };
+      ...Object.keys(req.query).map((objKey) => {
+        if (
+          objKey.indexOf('stateName') !== -1 ||
+          objKey.indexOf('abbreviation') !== -1
+        )
+          return { [objKey]: req.query[objKey] };
       })
     );
     let orderBy = '';
@@ -19,16 +23,16 @@ module.exports = {
     return res.json(state);
   },
   async store(req, res) {
-    const { name, abbreviation } = req.body;
+    const { stateName, abbreviation } = req.body;
 
-    let state = await State.findOne({ name });
+    let state = await State.findOne({ stateName });
 
     if (state) {
       res.status(400).json({ success: false, message: 'Estado já cadastrado' });
     }
     try {
       state = await State.create({
-        name,
+        stateName,
         abbreviation,
       });
     } catch (error) {
@@ -42,7 +46,7 @@ module.exports = {
     const updatedState = await State.findOneAndUpdate(
       { _id: req.params.id },
       {
-        name: req.body.name,
+        stateName: req.body.stateName,
         abbreviation: req.body.abbreviation,
       },
       function (err, state) {

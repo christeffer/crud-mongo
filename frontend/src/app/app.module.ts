@@ -24,8 +24,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/template/header/header.component';
 import { FooterComponent } from './components/template/footer/footer.component';
 import { HomeComponent } from './views/home/home.component';
-import { CodeComponent } from './components/code/code.component';
-import { PlanComponent } from './components/plan/plan.component';
+import { StateComponent } from './components/state/state.component';
 
 registerLocaleData(localePt);
 
@@ -35,8 +34,7 @@ registerLocaleData(localePt);
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    CodeComponent,
-    PlanComponent,
+    StateComponent,    
   ],
   imports: [
     BrowserModule,

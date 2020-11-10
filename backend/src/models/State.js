@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const StateSchema = new mongoose.Schema({
-  name: {
+  stateName: {
     type: String,
     required: 'Nome é obrigatório',
   },

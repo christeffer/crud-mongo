@@ -9,14 +9,10 @@ import { HeaderService } from '../../services/header.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
-  resultWith: Number;
-  resultWithout: Number;
-  originCode: Number;
-  destinyCode: Number;
-  plan: Number;
-  minutes: Number;
-  isShowResult: boolean;
+export class HomeComponent implements OnInit {  
+  state: String;
+  name: String;
+  
   constructor(
     private snackBar: MatSnackBar,
     private headerService: HeaderService    
@@ -29,7 +25,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isShowResult = false;
+    
   }
 
   showMessage(msg: string, isError: boolean = false): void {

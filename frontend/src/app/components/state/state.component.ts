@@ -16,7 +16,8 @@ export class StateComponent implements OnInit {
   constructor(private stateService: StateService) {}
 
   ngOnInit(): void {
-    this.stateService.read().subscribe((states) => {
+    this.stateService.read('','', 'stateName', 'asc').subscribe((states) => {
+      console.log(states);
       this.states = states;
     });
   }

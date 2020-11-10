@@ -3,27 +3,14 @@ const City = require('../models/City');
 
 module.exports = {
   async index(req, res) {
-    const fields = ['cityName', 'stateName', 'abbreviation'];
-    let fieldsLength = fields.length;
     const filter = Object.assign(
       {},
       ...Object.keys(req.query).map((objKey) => {
-        let max = fieldsLength;
-        while (max >= 0) {
-          console.log('field ' + fields[max]);
-          console.log('obj ' + objKey);
-          if (objKey.indexOf(fields[max]) !== -1) {
-            return { [objKey]: req.query[objKey] };
-          }
-          max--;
-        }
-        /*
         if (objKey.indexOf('cityName') !== -1)
           return { [objKey]: req.query[objKey] };
-        */
       })
     );
-    console.log(filter);
+
     let orderBy = '';
     if (req.query['order'] && req.query['sortBy']) {
       const order = req.query['order'] ? req.query['order'] : '';
