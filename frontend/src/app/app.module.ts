@@ -25,12 +25,17 @@ import { HeaderComponent } from './components/template/header/header.component';
 import { FooterComponent } from './components/template/footer/footer.component';
 import { NavComponent } from './components/template/nav/nav.component';
 import { HomeComponent } from './views/home/home.component';
-import { StateComponent } from './components/state/state.component';
+import { StateSelectComponent } from './components/state/select/state.component';
 import { CityComponent } from './views/city/city.component';
 import { CityCreateComponent } from './components/city/city-create/city-create.component';
 import { CityReadComponent } from './components/city/city-read/city-read.component';
 import { CityUpdateComponent } from './components/city/city-update/city-update.component';
 import { CityDeleteComponent } from './components/city/city-delete/city-delete.component';
+import { StateComponent } from './views/state/state.component';
+import { StateCreateComponent } from './components/state/state-create/state-create.component';
+import { StateReadComponent } from './components/state/state-read/state-read.component';
+import { StateUpdateComponent } from './components/state/state-update/state-update.component';
+import { StateDeleteComponent } from './components/state/state-delete/state-delete.component';
 
 registerLocaleData(localePt);
 
@@ -41,12 +46,17 @@ registerLocaleData(localePt);
     NavComponent,
     FooterComponent,
     HomeComponent,
-    StateComponent, 
+    StateSelectComponent, 
     CityComponent,   
     CityCreateComponent,
     CityReadComponent,
     CityUpdateComponent,
     CityDeleteComponent,
+    StateComponent,
+    StateCreateComponent,
+    StateReadComponent,
+    StateUpdateComponent,
+    StateDeleteComponent,
   ],
   imports: [
     BrowserModule,

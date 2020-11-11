@@ -1,0 +1,28 @@
+<mat-card>
+  <mat-card-title>Novo Estado</mat-card-title>
+  <form>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Nome"
+        [(ngModel)]="state.stateName"
+        name="stateName"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Abreviação"
+        [(ngModel)]="state.abbreviation"
+        name="abbreviation"
+      />
+    </mat-form-field>
+  </form>
+  <button mat-raised-button (click)="createState()" color="primary">
+    Salvar
+  </button>
+
+  <button mat-raised-button (click)="cancel()">
+    Cancelar
+  </button>
+</mat-card>

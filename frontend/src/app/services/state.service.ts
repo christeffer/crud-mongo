@@ -22,7 +22,7 @@ export class StateService {
     });
   }
 
-  read(stateName: string, abbreviation: string, sortBy: string, order: string): Observable<State[]> {
+  read(stateName: string = '', abbreviation: string = '', sortBy: string = '', order: string = ''): Observable<State[]> {
     let params = new HttpParams().set('stateName', stateName).set('abbreviation', abbreviation).set('sortBy', sortBy).set('order', order);
     // todo parametros de filtros e ordenação
     return this.http.get<State[]>(`${environment.apiUrl}/state`, { headers: {'x-api-key' : '123'} }).pipe(

@@ -9,7 +9,7 @@
         name="cityName"
       />
     </mat-form-field>
-    <app-state class="field" [(inputModel)]="city.state._id" name="stateSelected"></app-state>    
+    <app-state-select class="field" [(inputModel)]="city.state._id" name="stateSelected"></app-state-select>    
   </form>
   <button mat-raised-button (click)="createCity()" color="primary">
     Salvar

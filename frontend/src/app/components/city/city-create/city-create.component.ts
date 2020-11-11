@@ -22,7 +22,7 @@ export class CityCreateComponent implements OnInit {
 
   createCity(): void {
     this.cityService.create(this.city).subscribe(() => {
-      this.cityService.showMessage('Cidade criado!');
+      this.cityService.showMessage('Cidade cadastrada!');
       this.router.navigate(['/city']);
     });
   }
