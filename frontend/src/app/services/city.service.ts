@@ -29,7 +29,14 @@ export class CityService {
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );
-  }  
+  }
+
+  readById(id: string): Observable<City> {    
+    return this.http.get<City>(`${environment.apiUrl}/city/${id}`, { headers: {'x-api-key' : '123'} }).pipe(
+      map((obj) => obj),
+      catchError((e) => this.errorHandler(e))
+    );
+  }
 
   create(city: City): Observable<City> {
     return this.http.post<City>(`${environment.apiUrl}/city`, city, { headers: {'x-api-key' : '123'} }).pipe(

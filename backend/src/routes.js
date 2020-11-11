@@ -5,16 +5,16 @@ const isAuthorized = require('./middleware/isAuthorized');
 
 const routes = Router();
 
-routes.use(isAuthorized);
+routes.get('/state', isAuthorized, StateController.index);
+routes.get('/state/:id', isAuthorized, StateController.show);
+routes.post('/state', isAuthorized, StateController.store);
+routes.put('/state/:id', isAuthorized, StateController.update);
+routes.delete('/state/:id', isAuthorized, StateController.destroy);
 
-routes.get('/state', StateController.index);
-routes.post('/state', StateController.store);
-routes.put('/state/:id', StateController.update);
-routes.delete('/state/:id', StateController.destroy);
-
-routes.get('/city', CityController.index);
-routes.post('/city', CityController.store);
-routes.put('/city/:id', CityController.update);
-routes.delete('/city/:id', CityController.destroy);
+routes.get('/city', isAuthorized, CityController.index);
+routes.get('/city/:id', isAuthorized, CityController.show);
+routes.post('/city', isAuthorized, CityController.store);
+routes.put('/city/:id', isAuthorized, CityController.update);
+routes.delete('/city/:id', isAuthorized, CityController.destroy);
 
 module.exports = routes;

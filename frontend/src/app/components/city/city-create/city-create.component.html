@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-title>Nova Cidade</mat-card-title>
+  <form>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Nome"
+        [(ngModel)]="city.cityName"
+        name="cityName"
+      />
+    </mat-form-field>
+    <app-state class="field" [(inputModel)]="city.state._id" name="stateSelected"></app-state>    
+  </form>
+  <button mat-raised-button (click)="createCity()" color="primary">
+    Salvar
+  </button>
+
+  <button mat-raised-button (click)="cancel()">
+    Cancelar
+  </button>
+</mat-card>

@@ -1,0 +1,17 @@
+<mat-card>
+    <mat-card-title>Alterar Cidade</mat-card-title>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="Nome"
+                [(ngModel)]="city.cityName" name="name">
+        </mat-form-field>
+        <app-state class="field" [(inputModel)]="city.state._id" name="stateSelected"></app-state>  
+    </form>
+    <button mat-raised-button (click)="updateCity()" color="primary">
+        Atualizar
+    </button>
+    
+    <button mat-raised-button (click)="cancel()">
+        Cancelar
+    </button>
+</mat-card>

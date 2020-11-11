@@ -9,15 +9,13 @@ import { StateService } from '../../services/state.service';
   styleUrls: ['./state.component.css'],
 })
 export class StateComponent implements OnInit {
-  @Input() inputModel: number;
-  @Output() inputModelChange = new EventEmitter<number>();
-  states: State[];
-  displayedColumns = ['id', 'code'];
+  @Input() inputModel: string;
+  @Output() inputModelChange = new EventEmitter<string>();
+  states: State[];  
   constructor(private stateService: StateService) {}
 
   ngOnInit(): void {
-    this.stateService.read('','', 'stateName', 'asc').subscribe((states) => {
-      console.log(states);
+    this.stateService.read('','', 'stateName', 'asc').subscribe((states) => {    
       this.states = states;
     });
   }

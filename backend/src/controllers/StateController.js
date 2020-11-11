@@ -22,6 +22,21 @@ module.exports = {
     const state = await State.find(filter).sort(orderBy);
     return res.json(state);
   },
+
+  async show(req, res) {
+    const { id } = req.params;
+
+    if (!id) {
+      res
+        .status(400)
+        .json({ success: false, message: 'Campo ID não informado' });
+    }
+
+    const state = await State.findById(id);
+
+    return res.json(state);
+  },
+
   async store(req, res) {
     const { stateName, abbreviation } = req.body;
 

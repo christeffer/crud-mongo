@@ -31,6 +31,13 @@ export class StateService {
     );
   }  
 
+  readById(id: string): Observable<State> {    
+    return this.http.get<State>(`${environment.apiUrl}/state/${id}`, { headers: {'x-api-key' : '123'} }).pipe(
+      map((obj) => obj),
+      catchError((e) => this.errorHandler(e))
+    );
+  }
+
   create(state: State): Observable<State> {
     return this.http.post<State>(`${environment.apiUrl}/state`, state, { headers: {'x-api-key' : '123'} }).pipe(
       map((obj) => obj),

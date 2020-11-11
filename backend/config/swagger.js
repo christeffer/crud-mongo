@@ -35,7 +35,44 @@ module.exports = {
       get: {
         tags: ['Estado'],
         description: 'Listar Estados',
-        parameters: [],
+        parameters: [
+          {
+            name: 'stateName',
+            in: 'query',
+            schema: {
+              $ref: '#/components/schemas/stateName',
+            },
+            required: false,
+            description: 'Filtro pelo nome do estado',
+          },
+          {
+            name: 'abbreviation',
+            in: 'query',
+            schema: {
+              $ref: '#/components/schemas/abbreviation',
+            },
+            required: false,
+            description: 'Filtro pela abreviação do estado',
+          },
+          {
+            name: 'sortBy',
+            in: 'query',
+            schema: {
+              $ref: '#/components/schemas/sortBy',
+            },
+            required: false,
+            description: 'Campo da ordenação ex: (stateName, abbreviation)',
+          },
+          {
+            name: 'order',
+            in: 'query',
+            schema: {
+              $ref: '#/components/schemas/order',
+            },
+            required: false,
+            description: 'Ordenação ex: asc',
+          },
+        ],
         responses: {
           200: {
             description: 'Lista de estados Cadastrados',
@@ -217,7 +254,35 @@ module.exports = {
       get: {
         tags: ['Cidade'],
         description: 'Listar Cidades',
-        parameters: [],
+        parameters: [
+          {
+            name: 'cityName',
+            in: 'query',
+            schema: {
+              $ref: '#/components/schemas/cityName',
+            },
+            required: false,
+            description: 'Filtro pelo nome da cidade',
+          },
+          {
+            name: 'sortBy',
+            in: 'query',
+            schema: {
+              $ref: '#/components/schemas/sortBy',
+            },
+            required: false,
+            description: 'Campo da ordenação ex: cityName',
+          },
+          {
+            name: 'order',
+            in: 'query',
+            schema: {
+              $ref: '#/components/schemas/order',
+            },
+            required: false,
+            description: 'Ordenação ex: asc',
+          },
+        ],
         responses: {
           200: {
             description: 'Lista de cidades Cadastradas',
@@ -398,6 +463,15 @@ module.exports = {
   },
   components: {
     schemas: {
+      sortBy: {
+        type: 'string',
+        description: 'Campo da Ordenação',
+      },
+      order: {
+        type: 'string',
+        description: 'Ordenação (ASC ou DESC)',
+        example: 'asc',
+      },
       stateId: {
         type: 'string',
         description: 'ID do estado',
@@ -436,7 +510,7 @@ module.exports = {
       State: {
         type: 'object',
         properties: {
-          name: {
+          stateName: {
             $ref: '#/components/schemas/stateName',
           },
           abbreviation: {
@@ -450,7 +524,7 @@ module.exports = {
           _id: {
             $ref: '#/components/schemas/stateId',
           },
-          name: {
+          stateName: {
             $ref: '#/components/schemas/stateName',
           },
           abbreviation: {
@@ -467,7 +541,7 @@ module.exports = {
       City: {
         type: 'object',
         properties: {
-          name: {
+          cityName: {
             $ref: '#/components/schemas/cityName',
           },
           state: {
@@ -481,7 +555,7 @@ module.exports = {
           _id: {
             $ref: '#/components/schemas/cityId',
           },
-          name: {
+          cityName: {
             $ref: '#/components/schemas/cityName',
           },
           state: {
@@ -495,23 +569,6 @@ module.exports = {
           },
         },
       },
-      User: {
-        type: 'object',
-        properties: {
-          identificationNumber: {
-            $ref: '#/components/schemas/identificationNumber',
-          },
-          username: {
-            $ref: '#/components/schemas/username',
-          },
-          userType: {
-            $ref: '#/components/schemas/userType',
-          },
-          companyId: {
-            $ref: '#/components/schemas/companyId',
-          },
-        },
-      },
       States: {
         type: 'object',
         properties: {
@@ -519,17 +576,6 @@ module.exports = {
             type: 'array',
             items: {
               $ref: '#/components/schemas/StateResponse',
-            },
-          },
-        },
-      },
-      Users: {
-        type: 'object',
-        properties: {
-          users: {
-            type: 'array',
-            items: {
-              $ref: '#/components/schemas/User',
             },
           },
         },

@@ -21,6 +21,21 @@ module.exports = {
 
     return res.json(city);
   },
+
+  async show(req, res) {
+    const { id } = req.params;
+
+    if (!id) {
+      res
+        .status(400)
+        .json({ success: false, message: 'Campo ID não informado' });
+    }
+
+    const city = await City.findById(id).populate('state');
+
+    return res.json(city);
+  },
+
   async store(req, res) {
     const { cityName, state } = req.body;
 

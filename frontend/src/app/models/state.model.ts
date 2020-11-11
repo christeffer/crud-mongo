@@ -1,5 +1,5 @@
 export interface State {
   _id?: string;
-  name: string;
+  stateName: string;
   abbreviation: string;
 }
